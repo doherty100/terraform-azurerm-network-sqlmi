@@ -82,7 +82,7 @@ resource "azurerm_network_security_rule" "allow_misubnet_inbound" {
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  source_address_prefix       = "${azurerm_subnet.subnet.address_prefix}"
+  source_address_prefix       = "${azurerm_subnet.sqlmisubnet.address_prefix}"
   destination_port_range      = "*"
   destination_address_prefix  = "*"
   resource_group_name         = "${azurerm_resource_group.rg.name}"
@@ -189,7 +189,7 @@ resource "azurerm_network_security_rule" "allow_misubnet_outbound" {
   source_port_range           = "*"
   source_address_prefix       = "*"
   destination_port_range      = "*"
-  destination_address_prefix  = "${azurerm_subnet.subnet.address_prefix}"
+  destination_address_prefix  = "${azurerm_subnet.sqlmisubnet.address_prefix}"
   resource_group_name         = "${azurerm_resource_group.rg.name}"
   network_security_group_name = "${azurerm_network_security_group.nsg.name}"
 }
@@ -254,7 +254,7 @@ resource "azurerm_network_security_rule" "deny_all_outbound" {
   network_security_group_name = "${azurerm_network_security_group.nsg.name}"
 }
 resource "azurerm_subnet_network_security_group_association" "subnet_to_nsg" {
-  subnet_id                 = "${azurerm_subnet.subnet.id}"
+  subnet_id                 = "${azurerm_subnet.sqlmisubnet.id}"
   network_security_group_id = "${azurerm_network_security_group.nsg.id}"
 }
 
@@ -274,7 +274,7 @@ resource "azurerm_route" "subnet_to_vnetlocal" {
     name = "subnet_to_vnetlocal"
     resource_group_name = "${azurerm_resource_group.rg.name}"
     route_table_name = "${azurerm_route_table.routetable.name}"
-    address_prefix = "${azurerm_subnet.subnet.address_prefix}"
+    address_prefix = "${azurerm_subnet.sqlmisubnet.address_prefix}"
     next_hop_type = "VnetLocal"
 }
 
@@ -526,6 +526,6 @@ resource "azurerm_route" "mi-224-3-nexthop-internet" {
 }
 
 resource "azurerm_subnet_route_table_association" "subnet_to_routetable" {
-  subnet_id      = "${azurerm_subnet.subnet.id}"
+  subnet_id      = "${azurerm_subnet.sqlmisubnet.id}"
   route_table_id = "${azurerm_route_table.routetable.id}"
 }

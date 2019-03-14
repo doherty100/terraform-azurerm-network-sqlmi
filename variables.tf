@@ -1,4 +1,5 @@
-# General 
+# General variables
+
 variable "resource_prefix" {
   type = "string"
   description = "The prefix used for all resources in this example"
@@ -8,7 +9,7 @@ variable "resource_prefix" {
 variable "location" {
   type = "string"
   description = "The Azure Region in which the resources in this example should exist"
-  default     = "West US 2"
+  default     = "East US"
 }
 
 variable "tags" {
@@ -22,7 +23,7 @@ variable "tags" {
   }
 }
 
-# VNet 
+# Virtual Network variables 
 variable "address_space" {
   type = "string"
   description = "The address space that is used by the virtual network."
@@ -35,25 +36,26 @@ variable "dns_servers" {
   default     = []
 }
 
+variable "default_subnet_name" {
+  type = "string"
+  description = "The name to use for the default subnet."
+  default     = "default"
+}
+
 variable "default_subnet_prefix" {
   type = "string"
   description = "The address prefix to use for the default subnet."
   default     = "10.0.0.0/24"
 }
 
-variable "default_subnet_name" {
-  type = "string"
-  description = "The name to use for the default subnet."
-  default     = "default"
-}
-variable "sqlmi_subnet_prefix" {
-  type = "string"
-  description = "The address prefix to use for the SQL Managed Instance subnet."
-  default     = "10.0.1.0/24"
-}
-
 variable "sqlmi_subnet_name" {
   type = "string"
   description = "The name to use for the Azure SQL Managed Instance subnet."
   default     = "sqlmi"
+}
+
+variable "sqlmi_subnet_prefix" {
+  type = "string"
+  description = "The address prefix to use for the SQL Managed Instance subnet."
+  default     = "10.0.1.0/24"
 }

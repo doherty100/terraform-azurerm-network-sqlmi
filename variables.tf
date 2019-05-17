@@ -23,7 +23,7 @@ variable "tags" {
   }
 }
 
-# Virtual Network variables 
+# Virtual network variables 
 variable "address_space" {
   type = "string"
   description = "The address space that is used by the virtual network."
@@ -36,6 +36,7 @@ variable "dns_servers" {
   default     = []
 }
 
+# Subnet variables
 variable "default_subnet_name" {
   type = "string"
   description = "The name to use for the default subnet."

@@ -1,4 +1,4 @@
-# Secure Virtual Network for HDInsight
+# Secure Virtual Network for SQL Managed Instance
 
 This configuration provisions a secure "spoke" Azure Virtual Network (VNet) for use with Azure SQL Managed Instance as described in the article:
 * [Connectivity architecture for a managed instance in Azure SQL Database](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-managed-instance-connectivity-architecture)
